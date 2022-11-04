@@ -1,22 +1,24 @@
 from urllib import parse
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-port= 3000
-class servidorBasico(SimpleHTTPRequestHandler):
+
+port = 3000
+
+class miServidor(SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path=="/":
             self.path = "index.html"
         return SimpleHTTPRequestHandler.do_GET(self)
 
     def do_POST(self):
-        longitud = int(self.headers["Content-Length"])
-        data = self.rfile.read(longitud)
+        lenc = int(self.headers["Content-Length"])
+        data = self.rfile.read(lenc)
         data = data.decode()
-        data = float(parse.unquote(data))
-    
+        data = parse.unquote(data)
+
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(str(data[0][0]).encode())
-        
-print("Server iniciado en el puerto ", port)
-server = HTTPServer(("localhost", port), servidorBasico)
+        self.wfile.write( str(data).encode() )
+
+print("Servidor corriendo en el pueto", port)
+server = HTTPServer(("localhost", port), miServidor)
 server.serve_forever()
