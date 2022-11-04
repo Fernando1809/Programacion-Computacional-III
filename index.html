@@ -4,40 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de grados de temperatura con IA</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <title>Parcial II - Conversor con IA</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
+    crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-2">CELSIUS</div>
-            <div class="col col-md-4">
-                <input class="form-control" type="text" name="txttemperatura" id="txttemperatura">
-            </div>
-            <div class="col col-md-3">
-                <button class="btn btn-primary" id="btnConvertir">Convertir</button>
-                <span class="bg bg-warning p-2" id="spnResultado">Respuesta</span>
+    <form id="frmAlumno">
+        <div class="container">
+            <div class="card text-bg-secondary mb-3" >
+                <div class="card-header">Administracion de ALUMNOS</div>
+                <div class="card-body">
+                    <div class="row m-1">
+                        <div class="col">CODIGO</div>
+                        <div class="col col-md-2">
+                            <input class="form-control" type="text" name="txtCodigoAlumno" id="txtCodigoAlumno">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col">NOMBRE</div>
+                        <div class="col col-md-4">
+                            <input class="form-control" type="text" name="txtNombreAlumno" id="txtNombreAlumno">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col">DIRECCION</div>
+                        <div class="col col-md-5">
+                            <input class="form-control" type="text" name="txtDireccionAlumno" id="txtDireccionAlumno">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col">TEL</div>
+                        <div class="col col-md-3">
+                            <input class="form-control" type="text" name="txtTelefonoAlumno" id="txtTelefonoAlumno">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-3">
+                            <input class="btn btn-primary" type="submit" value="GUARDAR">
+                        </div>
+                        <div class="col col-md-3">
+                            <input class="btn btn-warning" type="reset" value="NUEVO">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" 
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" 
+        crossorigin="anonymous"></script>
     <script>
-        let btn = document.querySelector("#btnConvertir");
-        btn.addEventListener("click",event=>{
-            event.preventDefault();
-
-            let celsius = document.querySelector("#txttemperatura").value;
-            //peticion AJAX
-
-            fetch("http://localhost:3000", {
-                method: "POST",
-                body:celsius
-            }).then(response=>response.json())
-            .then(respuesta=>{
-                document.querySelector("#spnResultado")
-                    .innerText = `F: ${respuesta}`;
-            });
+        $("#frmAlumno").submit(e=>{
+            e.preventDefault();
+            let codigo = $("#txtCodigoAlumno").val(),
+                nombre = $("#txtNombreAlumno").val(),
+                direccion = $("#txtDireccionAlumno").val(),
+                telefono = $("#txtTelefonoAlumno").val();
+            $.ajax({
+                url:'http://localhost:3000',
+                method:'POST',
+                data:JSON.stringify({codigo, nombre, direccion, telefono}),
+                success: resp=>{
+                    $("#divFharenheit").text(`${resp}F`);
+                }
+            })
         });
     </script>
 </body>
