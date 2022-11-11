@@ -51,8 +51,8 @@
         let btn = document.querySelector("#btnGuardarAlumno");
         btn.addEventListener("click",event=>{
             event.preventDefault();
-            
-         let accion = "nuevo",
+
+            let accion = "nuevo",
                 codigo = document.querySelector("#txtCodigoAlumno").value,
                 nombre = document.querySelector("#txtNombreAlumno").value,
                 direccion = document.querySelector("#txtDireccionAlumno").value,
@@ -61,7 +61,7 @@
 
             fetch("http://localhost:3000/alumno", {
                 method: "POST",
-                body:JSON.stringify({codigo, nombre, direccion, telefono})
+                body:JSON.stringify({accion, codigo, nombre, direccion, telefono})
             }).then(response=>response.json())
             .then(respuesta=>{
                 

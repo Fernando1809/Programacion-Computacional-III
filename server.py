@@ -4,7 +4,7 @@ import alumno
 import json
 port = 3000
 
-alumno= alumno.alumno()
+alumno = alumno.alumno()
 class miServidor(SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path=="/":
@@ -18,12 +18,11 @@ class miServidor(SimpleHTTPRequestHandler):
         data = parse.unquote(data)
         data = json.loads(data)
         if self.path=="/alumno":
-            resp = alumno.administrar_alumnos(data)
+            resp = alumno.aministrar_alumnos(data)
 
         self.send_response(200)
         self.end_headers()
         self.wfile.write( str(resp).encode() )
-
 
 print("Servidor corriendo en el pueto", port)
 server = HTTPServer(("localhost", port), miServidor)

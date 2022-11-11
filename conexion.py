@@ -2,23 +2,22 @@ import mysql.connector
 
 class conexion:
     def __init__(self):
-        self.db=mysql.connector.connect(
+        self.db = mysql.connector.connect(
             host='localhost',
             port=3306,
             user='root',
-            password='',
+            passwd='',
             database='db_academica'
-            
         )
         if self.db.is_connected():
-            print("Conexion establecida :D")
+            print("Conexion establecida con exito")
         else:
-            print("ERROR EN CONEXION")
+            print("Error en la conexion")
     def consultar(self, sql):
         cursor = self.db.cursor(dictionary=True)
         cursor.execute(sql)
         return cursor.fetchall()
-    
+
     def ejecutar_consulta(self, sql, val):
         try:
             cursor = self.db.cursor()
