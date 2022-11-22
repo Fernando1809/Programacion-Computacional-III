@@ -7,7 +7,7 @@ class conexion:
             port=3306,
             user='root',
             passwd='',
-            database='db_academica'
+            database='db_FashonNae'
         )
         if self.db.is_connected():
             print("Conexion establecida con exito")
