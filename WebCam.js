@@ -8,7 +8,7 @@ const errorMsgElement = document.querySelector('span#errorMsg');
 
 // Definimos tamaño del video y si queremos audio o no
 const constraints = {
-    audio: true,
+    Audio:false,
     video: {
         width: 720, height: 405
     }
