@@ -1,40 +1,21 @@
 body{
     font-family: sans-serif;
     margin: 0;
+    align-items: center;
+    background-color: black;
 }
 a{
     text-decoration: none;
-    color: white;
 }
-
 header{
     display: flex;
     min-height: 70px;
-    background-color:black;
     justify-content: space-between;
     align-items: center;
 }
 .logo{
     display: flex;
     align-items: center;
+    background-color: transparent;
 }
-.logo img{
-    height: 200px;
-    margin-right: 10px;
-}
-nav a{
-    font-weight: 500;
-    padding-right: 10px;
-}
-nav a:hover{
-    color: rgb(241, 7, 7);
-}
-@media (max-width:700px){
-    header{
-         flex-direction: column;
-        }
-        nav{
-            padding: 10px 0px;
-        }
 
-}
