@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camara</title>
+</head>
+<body>
+    <!-- Mensaje de error -->
+<span name="errorMsg"></span>
+
+<!-- Cargar Frame de TV y cargar el video de la webcam -->
+<div id="video_wrap">
+    <div id="video_overlays">
+        <video id="video_frame" playsinline autoplay></video>
+    </div> 
+    <!-- Capturamos la imagen a través de la API web y lo mostramos en el canvas -->
+<div class="button_controller">
+    <!-- Botón para capturar -->
+    <button id="snap_frame">Capturar Imagen</button>
+    <br/><br/>
+    <!-- Imagen de la Webcam -->
+    <canvas id="canvas_frame"></canvas>
+</div>
+
+<!-- Cargamos el Javascript -->
+<script src="/webCam.js" async></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let btn = document.querySelector("#btnGuardarAlumno");
+        btn.addEventListener("click",event=>{
+            event.preventDefault();
+
+            let codigo = document.querySelector("#txtCodigoAlumno").value,
+                nombre = document.querySelector("#txtNombreAlumno").value,
+                direccion = document.querySelector("#txtDireccionAlumno").value,
+                telefono = document.querySelector("#txtTelefonoAlumno").value;
+            //peticion AJAX
+
+            fetch("http://localhost:2402", {
+                method: "POST",
+                body:JSON.stringify({codigo, nombre, direccion, telefono})
+            }).then(response=>response.json())
+            .then(respuesta=>{
+                
+            });
+        });
+    </script>
+</body>
+</html>
