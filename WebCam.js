@@ -5,6 +5,7 @@ const videoFrame = document.getElementById('video_frame');
 const canvasFrame = document.getElementById('canvas_frame');
 const snapFrame = document.getElementById("snap_frame");
 const errorMsgElement = document.querySelector('span#errorMsg');
+const blob = Imagen.img('');
 
 // Definimos tamaño del video y si queremos audio o no
 const constraints = {
@@ -38,3 +39,17 @@ var context = canvasFrame.getContext('2d');
 snapFrame.addEventListener("click", function() {
     context.drawImage(videoFrame, 0, 0, 320, 140);
 });
+
+
+// pasa pasar las imagenes a base64
+// async function selectorImagen(img){
+    //let archivo = $(img)[0]?.files[0];
+    //if (archivo){
+        //let blob = await comprimirImagen(archivo, 60, 600),
+        //reader = new FileReader();
+        //reader.onload = function(e){
+            //json_imagen.img = e.target.result;
+            //$("#imgImagen").attr('scr', e.target.result);
+        //};
+    //}
+//}
